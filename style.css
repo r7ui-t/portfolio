@@ -1,0 +1,19 @@
+
+html {
+  scroll-snap-type: y mandatory;
+}
+
+.page {
+  scroll-snap-align: start;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+
+.profile { background: white; }
+.skills { background: #f5f5f5; }
+.projects { background: white; }
+.contact { background: #f5f5f5; }
