@@ -132,10 +132,10 @@ body {
   margin-top: auto;
 }
 
-.contact-github-link,
-.contact-github-link:visited,
-.contact-github-link:hover,
-.contact-github-link:active {
+.contact-link,
+.contact-link:visited,
+.contact-link:hover,
+.contact-link:active {
   color: inherit;
   text-decoration: none;
   display: inline-flex;
