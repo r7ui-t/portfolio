@@ -2,11 +2,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
-
 body {
   margin: 0;
   min-height: 100%;
@@ -24,6 +19,7 @@ body {
 }
 
 .page {
+  color: #FFFFFF;
   height: 100vh;
   padding: 2rem 0;
   display: flex;
@@ -57,7 +53,6 @@ body {
 }
 
 .card {
-  border: 1px solid #000;
   border-radius: 8px;
   padding: 2rem;
 }
@@ -75,17 +70,19 @@ body {
 }
 
 .role {
+  color: #D9E2FF;
   margin: 0.6rem 0 0;
 }
 
 .bio {
+  color: #D9E2FF;
   margin-top: 1.25rem;
   line-height: 1.7;
 }
 
 .mark {
   font-weight: bold;
-  color: #000;
+  text-decoration-line: underline;
 }
 
 .meta-list {
@@ -99,7 +96,7 @@ body {
 
 .meta-list li,
 .contact-list li {
-  border: 1px solid #000;
+  border: 1px solid #ffffff;
   border-radius: 6px;
   padding: 0.85rem 0.95rem;
   display: flex;
@@ -118,6 +115,7 @@ body {
 }
 
 .contact-info {
+  color: #D9E2FF;
   padding: 1rem 0;
   margin: 0.6rem 0 1.3rem;
   line-height: 1.7;
@@ -148,7 +146,6 @@ body {
   display: block;
 }
 
-
 .works-wrap {
   max-width: 1080px;
   width: 100%;
@@ -166,7 +163,7 @@ body {
 }
 
 .work-item {
-  border: 1px solid #000;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 6px;
   padding: 1rem;
   padding-right: 5rem;
@@ -270,7 +267,7 @@ body {
   margin: 0;
   border: 1px solid #000;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: auto;
   min-height: 320px;
   background: #f4f4f4;
 }
