@@ -29,32 +29,14 @@ body {
   position: relative;
 }
 
-.container {
-  max-width: 980px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 1.25rem;
-}
-
 .intro-card {
   width: 100%;
-}
-
-.intro-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
 }
 
 .profile-block,
 .contact-block {
   display: flex;
   flex-direction: column;
-}
-
-.card {
-  border-radius: 8px;
-  padding: 2rem;
 }
 
 .eyebrow {
@@ -85,30 +67,6 @@ body {
   text-decoration-line: underline;
 }
 
-.meta-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 1rem;
-  margin-top: auto;
-}
-
-.meta-list li,
-.contact-list li {
-  border: 1px solid #ffffff;
-  border-radius: 6px;
-  padding: 0.85rem 0.95rem;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-.meta-list strong {
-  font-size: 0.95rem;
-}
-
 .contact-block h2 {
   margin: 0.5rem 0 1.3rem;
   font-size: clamp(1.45rem, 2.8vw, 2rem);
@@ -119,15 +77,6 @@ body {
   padding: 1rem 0;
   margin: 0.6rem 0 1.3rem;
   line-height: 1.7;
-}
-
-.contact-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 1rem;
-  margin-top: auto;
 }
 
 .contact-link,
@@ -157,37 +106,6 @@ body {
   font-size: clamp(1.45rem, 2.8vw, 2rem);
 }
 
-.works-list {
-  display: grid;
-  gap: 1rem;
-}
-
-.work-item {
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 6px;
-  padding: 1rem;
-  padding-right: 5rem;
-  position: relative;
-}
-
-.work-item h3 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.work-item p {
-  margin: 0.6rem 0 0;
-  line-height: 1.7;
-}
-
-.work-item a,
-.work-item a:visited,
-.work-item a:hover,
-.work-item a:active {
-  color: inherit;
-  text-decoration: none;
-}
-
 .work-action-button,
 .work-action-link {
   display: inline-flex;
@@ -202,16 +120,6 @@ body {
   font: inherit;
 }
 
-.work-actions {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
 .work-action-link {
   display: inline-flex;
   align-items: center;
@@ -221,113 +129,12 @@ body {
   display: block;
 }
 
-.work-actions .work-icon {
-  position: static;
-  transform: none;
-}
-
 .work-info-icon,
 .work-link-icon {
   width: 16px;
   height: 16px;
 }
 
-.work-modal {
-  width: min(80vw, 980px);
-  height: min(80vh, 760px);
-  border: none;
-  padding: 0;
-  background: transparent;
-}
-
-.work-modal::backdrop {
-  background: rgba(0, 0, 0, 0.45);
-}
-
-.work-modal-panel {
-  position: relative;
-  background: #fff;
-  border: 1px solid #000;
-  border-radius: 10px;
-  padding: 1.25rem;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-}
-
-.work-modal-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  min-height: 100%;
-  align-items: stretch;
-}
-
-.work-modal-figure {
-  margin: 0;
-  border: 1px solid #000;
-  border-radius: 8px;
-  overflow: auto;
-  min-height: 320px;
-  background: #f4f4f4;
-}
-
-.work-modal-image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.work-modal-content {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 0.25rem 0.25rem;
-}
-
-.work-modal-meta {
-  margin: 1rem 0 0;
-  display: grid;
-  gap: 0.9rem;
-}
-
-.work-modal-meta div {
-  border: 1px solid #000;
-  border-radius: 6px;
-  padding: 0.8rem 0.9rem;
-}
-
-.work-modal-meta dt {
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  margin: 0;
-}
-
-.work-modal-meta dd {
-  margin: 0.35rem 0 0;
-  line-height: 1.7;
-}
-
-.work-modal-close {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  border: 0;
-  background: none;
-  font-size: 1.35rem;
-  cursor: pointer;
-  line-height: 1;
-}
-
-.work-modal-title {
-  margin: 0.5rem 0 0;
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-}
-
-.work-modal-detail {
-  margin: 0.9rem 0 0;
-  line-height: 1.8;
-}
 
 .works-more {
   margin: 1rem 0 0;
@@ -370,35 +177,8 @@ body {
 }
 
 @media (max-width: 900px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .intro-grid {
-    grid-template-columns: 1fr;
-    gap: 1.6rem;
-  }
-
   .works-wrap {
     padding: 0 1rem;
-  }
-
-  .card {
-    border-radius: 6px;
-    padding: 1.5rem;
-  }
-
-  .work-modal {
-    width: 92vw;
-    height: 80vh;
-  }
-
-  .work-modal-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .work-modal-figure {
-    min-height: 220px;
   }
 
   .scroll-hint,
