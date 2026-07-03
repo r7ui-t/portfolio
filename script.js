@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const techElement = modal.querySelector(".work-modal-tech");
   const detailElement = modal.querySelector(".work-modal-detail");
   const processElement = modal.querySelector(".work-modal-process");
+  const linkElement = modal.querySelector(".work-modal-link");
 
   const openModal = (trigger) => {
     imageElement.src = trigger.dataset.modalImage || "";
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     techElement.textContent = trigger.dataset.modalTech || "";
     detailElement.textContent = trigger.dataset.modalDetail || "";
     processElement.textContent = trigger.dataset.modalProcess || "";
+    linkElement.href = trigger.dataset.modalLink || "#";
+    linkElement.target = trigger.dataset.modalLinkTarget || "";
 
     modal.classList.remove("hidden");
   };
