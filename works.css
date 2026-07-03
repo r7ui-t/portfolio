@@ -6,6 +6,10 @@
   --accent: #22D3EE;
 }
 
+html {
+  background-color: #0B1020;
+}
+
 body {
   font-family: "Zen Kaku Gothic New", sans-serif;
 }
