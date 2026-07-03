@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     processElement.textContent = work.process || "";
     linkElement.href = work.modalLink || "#";
     linkElement.target = work.modalLinkTarget || "";
+    linkElement.dataset.action = work.modalLinkAction || "";
 
     modal.classList.remove("hidden");
   };
@@ -98,6 +99,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("click", (e) => {
     if (e.target.closest(".js-modal-close")) {
       closeModal();
+    }
+  });
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest(".work-modal-link");
+    if (link && link.dataset.action === "scrollTop") {
+      e.preventDefault();
+      closeModal();
+      const scrollContainer = document.querySelector(".site") || window;
+      scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
 });

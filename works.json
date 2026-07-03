@@ -8,8 +8,9 @@
     "detail": "情報リテラシーの課題で作成。HTML/CSS/JavaScriptを用いた自身のポートフォリオサイトです。",
     "process": "初めに、メディアデザイン入門で学んでいたプロトタイピングを行い大まかなレイアウトを決めました。その後実際にHTMLやCSSを用いてコードを記述していったのですが、CSSの知識が素人レベルだったため思っていたレイアウトに仕上げるのは困難でAIの力も借り作成することができました。開発において、初めてGitによるバージョン管理を行ったのですが、学校のパソコンから操作を行う際にGitHubのリポジトリにうまく接続できず、mainブランチの履歴が全て消えてしまったのがとても悔しいですがいい勉強になりました。",
     "image": "image/preview-image/portfolio-site.jpg",
-    "modalLink": "#profile-contact",
+    "modalLink": "#",
     "modalLinkTarget": "",
+    "modalLinkAction": "scrollTop",
     "github": "https://github.com/r7ui-t/portfolio",
     "indexView": { "href": "#profile-contact", "target": "", "ariaLabel": "作品リンクを開く" },
     "listView": { "href": "index.html#works", "target": "", "ariaLabel": "ポートフォリオサイトを開く" }
