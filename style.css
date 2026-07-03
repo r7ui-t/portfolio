@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+.site {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+}
+
+.page {
+  color: #FFFFFF;
+  height: 100vh;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+}
+
+.intro-card {
+  width: 100%;
+}
+
+.profile-block,
+.contact-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  margin: 0;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.name {
+  margin: 0.55rem 0 0;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.1;
+}
+
+.role {
+  color: #D9E2FF;
+  margin: 0.6rem 0 0;
+}
+
+.bio {
+  color: #D9E2FF;
+  margin-top: 1.25rem;
+  line-height: 1.7;
+}
+
+.mark {
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+.contact-block h2 {
+  margin: 0.5rem 0 1.3rem;
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+}
+
+.contact-info {
+  color: #D9E2FF;
+  padding: 1rem 0;
+  margin: 0.6rem 0 1.3rem;
+  line-height: 1.7;
+}
+
+.contact-link,
+.contact-link:visited,
+.contact-link:hover,
+.contact-link:active {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.contact-github-icon {
+  flex-shrink: 0;
+  display: block;
+}
+
+.works-wrap {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.works-wrap h2 {
+  margin: 0.5rem 0 1.3rem;
+  font-size: clamp(1.45rem, 2.8vw, 2rem);
+}
+
+.work-action-button,
+.work-action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.work-action-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.work-icon {
+  display: block;
+}
+
+.work-info-icon,
+.work-link-icon {
+  width: 16px;
+  height: 16px;
+}
+
+
+.works-more {
+  margin: 1rem 0 0;
+  text-align: right;
+}
+
+.works-more a,
+.works-more a:visited {
+  color: inherit;
+}
+
+.scroll-hint,
+.scroll-hint:visited {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.scroll-arrow {
+  font-size: 1.1rem;
+  animation: hint-bounce 1.2s ease-in-out infinite;
+}
+
+@keyframes hint-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (max-width: 900px) {
+  .works-wrap {
+    padding: 0 1rem;
+  }
+
+  .scroll-hint,
+  .scroll-hint:visited {
+    bottom: 0.75rem;
+    font-size: 0.8rem;
+  }
+}
