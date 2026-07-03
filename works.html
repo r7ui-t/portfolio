@@ -4,16 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>作品一覧</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="works.css">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gradient-to-br from-[#142A6E] to-[#0B1020] text-white min-h-screen">
   <main>
-    <header class="max-w-5xl mx-auto px-5 pt-16">
-      <p class="text-xs tracking-widest text-[#D9E2FF]">WORKS</p>
+    <header class="max-w-5xl mx-auto px-5 pt-16 reveal">
+      <p class="text-xs font-['Space_Grotesk'] font-bold tracking-widest text-cyan-300">WORKS</p>
       <h1 class="text-3xl font-bold mt-2">作品一覧</h1>
       <p class="text-[#D9E2FF]/80 mt-2">制作物を一覧で掲載しています。</p>
-      <a href="index.html" class="inline-block mt-4 text-[#D9E2FF] hover:underline">← トップへ戻る</a>
+      <a href="index.html" class="inline-block mt-4 text-[#D9E2FF] hover:text-cyan-300 hover:underline transition">← トップへ戻る</a>
     </header>
 
     <section class="max-w-5xl mx-auto px-5 mt-10 grid gap-4" aria-label="作品一覧" id="works-list"></section>
@@ -29,7 +32,7 @@
             <img class="work-modal-image w-full h-full object-cover">
           </figure>
           <div class="flex flex-col">
-            <p class="text-sm text-[#D9E2FF] opacity-80">WORK DETAIL</p>
+            <p class="text-sm font-['Space_Grotesk'] tracking-[0.15em] text-cyan-300">WORK DETAIL</p>
             <h2 class="work-modal-title text-white text-2xl font-bold mt-1">
             </h2>
             <div class="mt-4 space-y-3">
@@ -50,7 +53,7 @@
               <p class="text-sm text-[#D9E2FF]">制作過程</p>
               <p class="work-modal-process text-[#D9E2FF]/80 text-sm leading-relaxed mt-1 whitespace-pre-line"></p>
             </div>
-            <a href="#" class="work-modal-link mt-auto flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-sm hover:bg-white/20 transition" aria-label="作品へ移動">
+            <a href="#" class="work-modal-link mt-auto flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-sm hover:bg-white/20 hover:border-cyan-400/60 hover:text-cyan-200 transition" aria-label="作品へ移動">
               作品へ移動
             </a>
           </div>

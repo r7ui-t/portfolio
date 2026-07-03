@@ -16,8 +16,8 @@ const viewIconSvg = `
   </svg>`;
 
 const renderIndexCards = (container, works) => {
-  container.innerHTML = works.map((w) => `
-    <article class="relative border border-white/10 rounded-lg p-4 bg-white/10 hover:bg-white/15 transition">
+  container.innerHTML = works.map((w, i) => `
+    <article class="reveal relative border border-white/10 rounded-lg p-4 bg-white/10 hover:bg-white/15 hover:border-cyan-400/40 transition" style="transition-delay: ${Math.min(i, 6) * 90}ms">
       <h3>${w.title}</h3>
       <p>${w.summary}</p>
       <div class="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
@@ -30,14 +30,14 @@ const renderIndexCards = (container, works) => {
 };
 
 const renderListCards = (container, works) => {
-  container.innerHTML = works.map((w) => `
-    <article class="relative border border-white/10 rounded-xl p-5 pr-16 bg-white/10 backdrop-blur-lg hover:bg-white/15 hover:-translate-y-1 hover:shadow-xl transition">
+  container.innerHTML = works.map((w, i) => `
+    <article class="reveal relative border border-white/10 rounded-xl p-5 pr-16 bg-white/10 backdrop-blur-lg hover:bg-white/15 hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-xl transition" style="transition-delay: ${Math.min(i, 6) * 90}ms">
       <h2 class="text-white text-lg font-semibold">${w.title}</h2>
       <p class="text-[#D9E2FF]/80 text-sm mt-2">${w.summary}</p>
       <div class="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
-        ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
-        <button type="button" class="js-work-modal-trigger hover:scale-110 transition" aria-label="作品情報" data-work-id="${w.id}">${infoIconSvg}</button>
-        <a href="${w.listView.href}" ${w.listView.target ? `target="${w.listView.target}"` : ""} rel="noopener noreferrer" class="hover:scale-110 transition" aria-label="${w.listView.ariaLabel}">${viewIconSvg}</a>
+        ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="hover:scale-110 hover:text-cyan-300 transition" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
+        <button type="button" class="js-work-modal-trigger hover:scale-110 hover:text-cyan-300 transition" aria-label="作品情報" data-work-id="${w.id}">${infoIconSvg}</button>
+        <a href="${w.listView.href}" ${w.listView.target ? `target="${w.listView.target}"` : ""} rel="noopener noreferrer" class="hover:scale-110 hover:text-cyan-300 transition" aria-label="${w.listView.ariaLabel}">${viewIconSvg}</a>
       </div>
     </article>
   `).join("");
@@ -69,6 +69,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (indexContainer) renderIndexCards(indexContainer, works);
   if (listContainer) renderListCards(listContainer, works);
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
   const openModal = (work) => {
     imageElement.src = work.image || "";
