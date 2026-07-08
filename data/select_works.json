@@ -39,7 +39,7 @@
     "detail": "Claudeのトークンをタスクバーやタスクトレイで表示できるソフトです。アイコンは二種類用意してあり、右クリックを押すことでより詳細な情報が表示可能",
     "process": "知人からClaudeのトライアルを1週間もらったのをきっかけに、その期間中に制作しました。それまでGitHub Copilot以外のAIを使ったことがなく、本格的なAIサービスの実力に感動して、すぐに自分でも契約を決めたほどです。C#は未経験だったためコーディングの大部分はClaudeに頼りましたが、仕様の決定や動作確認・修正の指示は自分で行い、思い描いた通りのソフトを完成させられたことに満足しています。",
     "image": "image/preview-image/claudestatusbar.png",
-    "modalLink": "https://github.com/r7ui-t/ClaudeStatusbar",
+    "modalLink": "https://github.com/r7ui-t/ClaudeStatusbar/releases",
     "modalLinkTarget": "_blank",
     "github": "https://github.com/r7ui-t/ClaudeStatusbar",
     "indexView": { "href": "https://github.com/r7ui-t/ClaudeStatusbar/releases", "target": "_blank", "ariaLabel": "作品リンクを開く" },
