@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const indexContainer = document.querySelector("#works-grid");
   const listContainer = document.querySelector("#works-list");
-  const dataFile = indexContainer ? "select_works.json" : "works.json";
+  const dataFile = indexContainer ? "data/select_works.json" : "data/works.json";
 
   let works = [];
   try {
