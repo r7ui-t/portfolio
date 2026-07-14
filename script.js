@@ -44,6 +44,24 @@ const renderListCards = (container, works) => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
+  document.querySelectorAll(".js-copy-email").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const text = button.dataset.copyText;
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        button.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m5 12 4 4L19 6\"></path></svg>";
+        button.setAttribute("aria-label", "メールアドレスをコピーしました");
+        setTimeout(() => {
+          button.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"9\" y=\"9\" width=\"11\" height=\"11\" rx=\"2\"></rect><path d=\"M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4\"></path></svg>";
+          button.setAttribute("aria-label", "メールアドレスをコピー");
+        }, 2000);
+      } catch (err) {
+        console.error("メールアドレスのコピーに失敗しました:", err);
+      }
+    });
+  });
+
   const modal = document.getElementById("work-modal");
   if (!modal) return;
 
