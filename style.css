@@ -79,12 +79,12 @@ body {
   line-height: 1.7;
 }
 
-.mark {
+/* .mark {
   font-weight: bold;
   color: var(--accent);
   text-decoration-line: underline;
   text-decoration-color: var(--accent);
-}
+} */
 
 .contact-block h2 {
   margin: 0.5rem 0 1.3rem;
