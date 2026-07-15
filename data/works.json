@@ -17,12 +17,11 @@
       "images/mobile-preview-image/portfolio/portfolio-site-2.png",
       "images/mobile-preview-image/portfolio/portfolio-site-3.png"
     ],
-    "modalLink": "#",
+    "modalLink": "index.html#profile-contact",
     "modalLinkTarget": "",
-    "modalLinkAction": "scrollTop",
     "github": "https://github.com/r7ui-t/portfolio",
-    "indexView": { "href": "#profile-contact", "target": "", "ariaLabel": "作品リンクを開く" },
-    "listView": { "href": "index.html#works", "target": "", "ariaLabel": "ポートフォリオサイトを開く" }
+    "indexView": { "href": "index.html#profile-contact", "target": "", "ariaLabel": "作品リンクを開く" },
+    "listView": { "href": "index.html#profile-contact", "target": "", "ariaLabel": "ポートフォリオサイトを開く" }
   },
   {
     "id": "slay-the-spire-scratch",

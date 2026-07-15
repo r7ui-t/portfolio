@@ -317,3 +317,345 @@ h1 {
   .work-gallery-prev { left: 0.5rem; }
   .work-gallery-next { right: 0.5rem; }
 }
+
+/* Works page prototype implementation */
+.works-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding-bottom: 4rem;
+}
+
+.works-list-card {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 0.85rem;
+  background: rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.works-list-card:hover {
+  transform: translateY(-4px);
+  border-color: rgb(34 211 238 / 0.42);
+  background: rgb(255 255 255 / 0.12);
+  box-shadow: 0 16px 35px rgb(0 0 0 / 0.22);
+}
+
+.works-list-media {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: rgb(11 16 32 / 0.7);
+}
+
+.works-list-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.28s ease;
+}
+
+.works-list-card:hover .works-list-media img {
+  transform: scale(1.025);
+}
+
+.works-list-body {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.works-list-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.works-list-summary {
+  display: -webkit-box;
+  margin: 0.5rem 0 0;
+  overflow: hidden;
+  color: rgb(217 226 255 / 0.82);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.works-list-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+
+.works-list-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.works-list-action:hover {
+  color: #a5f3fc;
+  background: rgb(255 255 255 / 0.1);
+  transform: translateY(-1px);
+}
+
+.works-list-action svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+/* Fixed-size modal matching index.html */
+@media (min-width: 901px) {
+  .work-modal-panel {
+    width: min(1440px, calc(100vw - 2rem));
+    height: min(860px, calc(100svh - 2rem));
+    min-height: 0;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .work-modal-content {
+    height: 100%;
+    padding: clamp(0.8rem, 1.5vh, 1.2rem);
+  }
+
+  .work-modal-layout {
+    grid-template-columns: minmax(0, 1.65fr) minmax(360px, 0.95fr);
+    grid-template-rows: minmax(0, 1fr) minmax(155px, 0.38fr);
+    grid-template-areas:
+      "gallery summary"
+      "process process";
+    height: 100%;
+    gap: clamp(0.7rem, 1.3vh, 1rem) 1.35rem;
+  }
+
+  .work-modal-gallery {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .work-modal-info {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .work-modal-overview {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .work-modal-process-section {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1050px) {
+  .works-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .works-page-header,
+  .works-list {
+    padding-inline: 1rem;
+  }
+
+  .works-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .works-list-card {
+    display: block;
+  }
+
+  .works-list-media {
+    display: none;
+  }
+
+  .works-list-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0.6rem;
+    padding: 0.95rem 1rem;
+  }
+
+  .works-list-title {
+    grid-column: 1;
+    align-self: center;
+    font-size: 1rem;
+  }
+
+  .works-list-summary {
+    grid-column: 1 / -1;
+    margin-top: 0.44rem;
+    font-size: 0.82rem;
+    -webkit-line-clamp: 3;
+  }
+
+  .works-list-actions {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .works-list-action {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+
+/* works.html does not use the page-load reveal animation */
+.works-page-header.reveal,
+.works-list .reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Clickable cards and production period */
+.works-list-card {
+  cursor: pointer;
+}
+
+.works-list-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.works-list-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+
+.works-list-period {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  gap: 0.4rem;
+  color: rgb(207 250 254 / 0.82);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.works-list-period svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
+
+.works-list-period span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.works-list-footer .works-list-actions {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  .works-list-body {
+    grid-template-rows: auto auto auto;
+  }
+
+  .works-list-footer {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 0.65rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  .works-list-period {
+    font-size: 0.72rem;
+  }
+
+  .works-list-footer .works-list-actions {
+    display: flex;
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+/* Modal gallery slide animation shared with index.html */
+.work-modal-image {
+  will-change: transform, opacity;
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1), opacity 220ms ease;
+}
+
+.work-modal-image.is-sliding-out-left {
+  transform: translateX(-10%);
+  opacity: 0;
+}
+
+.work-modal-image.is-sliding-out-right {
+  transform: translateX(10%);
+  opacity: 0;
+}
+
+.work-modal-image.is-entering-from-right {
+  transform: translateX(10%);
+  opacity: 0;
+  transition: none;
+}
+
+.work-modal-image.is-entering-from-left {
+  transform: translateX(-10%);
+  opacity: 0;
+  transition: none;
+}
+
+.work-gallery-button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-modal-image {
+    transition: none;
+  }
+}

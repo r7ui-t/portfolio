@@ -15,6 +15,11 @@ const viewIconSvg = `
     <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.854 3.146a.5.5 0 1 0-.708.708L9.243 9.95H6.475a.5.5 0 1 0 0 1h3.975a.5.5 0 0 0 .5-.5V6.475a.5.5 0 1 0-1 0v2.768z"/>
   </svg>`;
 
+const calendarIconSvg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16" aria-hidden="true">
+    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+  </svg>`;
+
 const getFirstWorkImage = (work) => {
   if (Array.isArray(work.images) && work.images.length) return work.images[0];
   if (work.image) return work.image;
@@ -24,39 +29,28 @@ const getFirstWorkImage = (work) => {
 
 const renderIndexCards = (container, works) => {
   container.innerHTML = works.map((w, i) => `
-    <article class="work-card reveal border border-white/10 rounded-xl bg-white/10 hover:bg-white/15 hover:border-cyan-400/40 transition" style="transition-delay: ${Math.min(i, 6) * 90}ms">
-      <div class="work-card-media">
-        <img src="${getFirstWorkImage(w)}" alt="${w.title}のプレビュー画像" loading="lazy">
+    <article class="work-card js-work-card reveal border border-white/10 rounded-xl bg-white/10 hover:bg-white/15 hover:border-cyan-400/40 transition" style="transition-delay: ${Math.min(i, 6) * 90}ms" data-work-id="${w.id}" role="button" tabindex="0" aria-label="${w.title}の詳細を開く">
+      <div class="work-card-media"><img src="${getFirstWorkImage(w)}" alt="${w.title}のプレビュー画像" loading="lazy"></div>
+      <div class="work-card-body"><div class="work-card-header"><h3>${w.title}</h3></div><p>${w.summary}</p>
+        <div class="work-card-footer"><span class="work-card-period">${calendarIconSvg}<span>${w.period || "制作期間未設定"}</span></span><div class="work-card-actions">
+          ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="work-action-link" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
+          <a href="${w.indexView.href}" ${w.indexView.target ? `target="${w.indexView.target}"` : ""} rel="noopener noreferrer" class="work-action-link" aria-label="${w.indexView.ariaLabel}">${viewIconSvg}</a>
+        </div></div>
       </div>
-      <div class="work-card-body">
-        <div class="work-card-header">
-          <h3>${w.title}</h3>
-          <div class="work-card-actions">
-            ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="work-action-link" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
-            <button type="button" class="work-action-button js-work-modal-trigger" aria-label="作品情報" data-work-id="${w.id}">${infoIconSvg}</button>
-            <a href="${w.indexView.href}" ${w.indexView.target ? `target="${w.indexView.target}"` : ""} rel="noopener noreferrer" class="work-action-link" aria-label="${w.indexView.ariaLabel}">${viewIconSvg}</a>
-          </div>
-        </div>
-        <p>${w.summary}</p>
-      </div>
-    </article>
-  `).join("");
+    </article>`).join("");
 };
 
 const renderListCards = (container, works) => {
-  container.innerHTML = works.map((w, i) => `
-    <article class="reveal relative border border-white/10 rounded-xl p-5 pr-16 bg-white/10 backdrop-blur-lg hover:bg-white/15 hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-xl transition" style="transition-delay: ${Math.min(i, 6) * 90}ms">
-      <div class="work-card-header">
-        <h2 class="text-white text-lg font-semibold">${w.title}</h2>
-        <div class="work-card-actions absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
-          ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="hover:scale-110 hover:text-cyan-300 transition" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
-          <button type="button" class="js-work-modal-trigger hover:scale-110 hover:text-cyan-300 transition" aria-label="作品情報" data-work-id="${w.id}">${infoIconSvg}</button>
-          <a href="${w.listView.href}" ${w.listView.target ? `target="${w.listView.target}"` : ""} rel="noopener noreferrer" class="hover:scale-110 hover:text-cyan-300 transition" aria-label="${w.listView.ariaLabel}">${viewIconSvg}</a>
-        </div>
+  container.innerHTML = works.map((w) => `
+    <article class="works-list-card js-work-card" data-work-id="${w.id}" role="button" tabindex="0" aria-label="${w.title}の詳細を開く">
+      <div class="works-list-media"><img src="${getFirstWorkImage(w)}" alt="${w.title}のプレビュー画像" loading="lazy"></div>
+      <div class="works-list-body"><h2 class="works-list-title">${w.title}</h2><p class="works-list-summary">${w.summary}</p>
+        <div class="works-list-footer"><span class="works-list-period">${calendarIconSvg}<span>${w.period || "制作期間未設定"}</span></span><div class="works-list-actions">
+          ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="works-list-action" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
+          <a href="${w.listView.href}" ${w.listView.target ? `target="${w.listView.target}"` : ""} rel="noopener noreferrer" class="works-list-action" aria-label="${w.listView.ariaLabel}">${viewIconSvg}</a>
+        </div></div>
       </div>
-      <p class="text-[#D9E2FF]/80 text-sm mt-2">${w.summary}</p>
-    </article>
-  `).join("");
+    </article>`).join("");
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -130,6 +124,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let currentWork = null;
   let currentImageIndex = 0;
+  let galleryAnimationTimer = null;
+  let isGalleryAnimating = false;
 
   const updateGallery = () => {
     if (!currentWork) return;
@@ -155,13 +151,61 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const changeGalleryImage = (direction) => {
-    currentImageIndex += direction;
-    updateGallery();
+    if (!currentWork || isGalleryAnimating) return;
+    const images = getModalImages(currentWork);
+    if (images.length <= 1) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      currentImageIndex += direction;
+      updateGallery();
+      return;
+    }
+
+    isGalleryAnimating = true;
+    previousImageButton.disabled = true;
+    nextImageButton.disabled = true;
+
+    const exitClass = direction > 0 ? "is-sliding-out-left" : "is-sliding-out-right";
+    const enterClass = direction > 0 ? "is-entering-from-right" : "is-entering-from-left";
+
+    imageElement.classList.remove(
+      "is-sliding-out-left",
+      "is-sliding-out-right",
+      "is-entering-from-left",
+      "is-entering-from-right"
+    );
+    imageElement.classList.add(exitClass);
+
+    clearTimeout(galleryAnimationTimer);
+    galleryAnimationTimer = window.setTimeout(() => {
+      currentImageIndex += direction;
+      updateGallery();
+
+      imageElement.classList.remove(exitClass);
+      imageElement.classList.add(enterClass);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          imageElement.classList.remove(enterClass);
+        });
+      });
+
+      galleryAnimationTimer = window.setTimeout(() => {
+        isGalleryAnimating = false;
+        previousImageButton.disabled = false;
+        nextImageButton.disabled = false;
+      }, 280);
+    }, 220);
   };
 
   const openModal = (work) => {
     currentWork = work;
     currentImageIndex = 0;
+    isGalleryAnimating = false;
+    clearTimeout(galleryAnimationTimer);
+    imageElement.classList.remove("is-sliding-out-left", "is-sliding-out-right", "is-entering-from-left", "is-entering-from-right");
+    previousImageButton.disabled = false;
+    nextImageButton.disabled = false;
     updateGallery();
     titleElement.textContent = work.title || "";
     periodElement.textContent = work.period || "";
@@ -177,6 +221,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const closeModal = () => {
     modal.classList.add("hidden");
     currentWork = null;
+    isGalleryAnimating = false;
+    clearTimeout(galleryAnimationTimer);
+    imageElement.classList.remove("is-sliding-out-left", "is-sliding-out-right", "is-entering-from-left", "is-entering-from-right");
+    previousImageButton.disabled = false;
+    nextImageButton.disabled = false;
   };
 
   previousImageButton.addEventListener("click", () => changeGalleryImage(-1));
@@ -196,13 +245,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (event.key === "Escape") closeModal();
   });
 
+  const openWorkFromCard = (card) => {
+    const work = works.find((w) => w.id === card.dataset.workId);
+    if (work) openModal(work);
+  };
   document.addEventListener("click", (e) => {
-    const trigger = e.target.closest(".js-work-modal-trigger");
-    if (trigger) {
-      e.preventDefault();
-      const work = works.find((w) => w.id === trigger.dataset.workId);
-      if (work) openModal(work);
-    }
+    const card = e.target.closest(".js-work-card");
+    if (!card || e.target.closest("a, button")) return;
+    openWorkFromCard(card);
+  });
+  document.addEventListener("keydown", (e) => {
+    const card = e.target.closest(".js-work-card");
+    if (!card || e.target.closest("a, button")) return;
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openWorkFromCard(card); }
   });
   document.addEventListener("click", (e) => {
     if (e.target.closest(".js-modal-close")) {

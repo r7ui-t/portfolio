@@ -22,7 +22,7 @@
     "modalLinkAction": "scrollTop",
     "github": "https://github.com/r7ui-t/portfolio",
     "indexView": { "href": "#profile-contact", "target": "", "ariaLabel": "作品リンクを開く" },
-    "listView": { "href": "index.html#works", "target": "", "ariaLabel": "ポートフォリオサイトを開く" }
+    "listView": { "href": "index.html#profile-contact", "target": "", "ariaLabel": "ポートフォリオサイトを開く" }
   },
   {
     "id": "slay-the-spire-scratch",
