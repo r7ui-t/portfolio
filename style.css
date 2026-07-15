@@ -286,7 +286,25 @@ body {
   .page > .max-w-5xl { padding-inline: 0; }
   .intro-card { padding: 1rem !important; }
   #profile-contact strong { overflow-wrap: anywhere; }
-  #works-grid article { padding-right: 4.25rem; }
+  #works-grid article,
+  #works-list article { padding-right: 1rem; }
+  .work-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .work-card-header h2,
+  .work-card-header h3 {
+    min-width: 0;
+    margin: 0;
+  }
+  .work-card-actions {
+    position: static;
+    transform: none;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
   .works-wrap { padding-inline: 0.25rem; }
   .works-more { text-align: left; }
   #work-modal > .relative { max-width: calc(100% - 1.5rem); max-height: 90svh; }

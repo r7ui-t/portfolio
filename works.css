@@ -37,3 +37,38 @@ h1 {
     transition: none;
   }
 }
+
+@media (max-width: 640px) {
+  #works-list article {
+    padding-right: 1rem;
+  }
+
+  .work-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .work-card-header h2,
+  .work-card-header h3 {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .work-card-actions {
+    position: static;
+    transform: none;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  #work-modal > .relative {
+    max-width: calc(100% - 1.5rem);
+    max-height: 90svh;
+  }
+
+  #work-modal .work-modal-image {
+    height: 10rem;
+  }
+}
