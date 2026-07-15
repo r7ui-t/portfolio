@@ -280,3 +280,19 @@ body {
     transition: none;
   }
 }
+
+@media (max-width: 640px) {
+  .page { padding: 2.5rem 0.75rem; }
+  .page > .max-w-5xl { padding-inline: 0; }
+  .intro-card { padding: 1rem !important; }
+  #profile-contact strong { overflow-wrap: anywhere; }
+  #works-grid article { padding-right: 4.25rem; }
+  .works-wrap { padding-inline: 0.25rem; }
+  .works-more { text-align: left; }
+  #work-modal > .relative { max-width: calc(100% - 1.5rem); max-height: 90svh; }
+  #work-modal .work-modal-image { height: 10rem; }
+}
+@media (max-width: 380px) {
+  .contact-info { padding-block: 0.5rem; margin-bottom: 0.75rem; }
+  #profile-contact .grid { gap: 0.75rem; }
+}
