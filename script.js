@@ -15,18 +15,30 @@ const viewIconSvg = `
     <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.854 3.146a.5.5 0 1 0-.708.708L9.243 9.95H6.475a.5.5 0 1 0 0 1h3.975a.5.5 0 0 0 .5-.5V6.475a.5.5 0 1 0-1 0v2.768z"/>
   </svg>`;
 
+const getFirstWorkImage = (work) => {
+  if (Array.isArray(work.images) && work.images.length) return work.images[0];
+  if (work.image) return work.image;
+  if (Array.isArray(work.mobileImages) && work.mobileImages.length) return work.mobileImages[0];
+  return work.mobileImage || "";
+};
+
 const renderIndexCards = (container, works) => {
   container.innerHTML = works.map((w, i) => `
-    <article class="reveal relative border border-white/10 rounded-lg p-4 bg-white/10 hover:bg-white/15 hover:border-cyan-400/40 transition" style="transition-delay: ${Math.min(i, 6) * 90}ms">
-      <div class="work-card-header">
-        <h3>${w.title}</h3>
-        <div class="work-card-actions absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
-          ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="work-action-link" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
-          <button type="button" class="work-action-button js-work-modal-trigger" aria-label="作品情報" data-work-id="${w.id}">${infoIconSvg}</button>
-          <a href="${w.indexView.href}" ${w.indexView.target ? `target="${w.indexView.target}"` : ""} rel="noopener noreferrer" class="work-action-link" aria-label="${w.indexView.ariaLabel}">${viewIconSvg}</a>
-        </div>
+    <article class="work-card reveal border border-white/10 rounded-xl bg-white/10 hover:bg-white/15 hover:border-cyan-400/40 transition" style="transition-delay: ${Math.min(i, 6) * 90}ms">
+      <div class="work-card-media">
+        <img src="${getFirstWorkImage(w)}" alt="${w.title}のプレビュー画像" loading="lazy">
       </div>
-      <p>${w.summary}</p>
+      <div class="work-card-body">
+        <div class="work-card-header">
+          <h3>${w.title}</h3>
+          <div class="work-card-actions">
+            ${w.github ? `<a href="${w.github}" target="_blank" rel="noopener noreferrer" class="work-action-link" aria-label="GitHub リポジトリを開く">${githubIconSvg}</a>` : ""}
+            <button type="button" class="work-action-button js-work-modal-trigger" aria-label="作品情報" data-work-id="${w.id}">${infoIconSvg}</button>
+            <a href="${w.indexView.href}" ${w.indexView.target ? `target="${w.indexView.target}"` : ""} rel="noopener noreferrer" class="work-action-link" aria-label="${w.indexView.ariaLabel}">${viewIconSvg}</a>
+          </div>
+        </div>
+        <p>${w.summary}</p>
+      </div>
     </article>
   `).join("");
 };
@@ -70,6 +82,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!modal) return;
 
   const imageElement = modal.querySelector(".work-modal-image");
+  const previousImageButton = modal.querySelector(".work-gallery-prev");
+  const nextImageButton = modal.querySelector(".work-gallery-next");
+  const imageCounter = modal.querySelector(".work-gallery-counter");
   const titleElement = modal.querySelector(".work-modal-title");
   const periodElement = modal.querySelector(".work-modal-period");
   const techElement = modal.querySelector(".work-modal-tech");
@@ -102,8 +117,52 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, { threshold: 0.15 });
   document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
+  const getModalImages = (work) => {
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
+    const pcImages = Array.isArray(work.images) && work.images.length
+      ? work.images
+      : (work.image ? [work.image] : []);
+    const mobileImages = Array.isArray(work.mobileImages) && work.mobileImages.length
+      ? work.mobileImages
+      : (work.mobileImage ? [work.mobileImage] : []);
+    return isMobile && mobileImages.length ? mobileImages : pcImages;
+  };
+
+  let currentWork = null;
+  let currentImageIndex = 0;
+
+  const updateGallery = () => {
+    if (!currentWork) return;
+    const images = getModalImages(currentWork);
+    const hasImages = images.length > 0;
+    const hasMultipleImages = images.length > 1;
+
+    if (!hasImages) {
+      imageElement.removeAttribute("src");
+      imageElement.alt = "画像は登録されていません";
+    } else {
+      currentImageIndex = (currentImageIndex + images.length) % images.length;
+      imageElement.src = images[currentImageIndex];
+      imageElement.alt = `${currentWork.title || "作品"}の画像 ${currentImageIndex + 1}`;
+    }
+
+    previousImageButton.hidden = !hasMultipleImages;
+    nextImageButton.hidden = !hasMultipleImages;
+    imageCounter.hidden = !hasMultipleImages;
+    imageCounter.textContent = hasMultipleImages
+      ? `${currentImageIndex + 1} / ${images.length}`
+      : "";
+  };
+
+  const changeGalleryImage = (direction) => {
+    currentImageIndex += direction;
+    updateGallery();
+  };
+
   const openModal = (work) => {
-    imageElement.src = work.image || "";
+    currentWork = work;
+    currentImageIndex = 0;
+    updateGallery();
     titleElement.textContent = work.title || "";
     periodElement.textContent = work.period || "";
     techElement.textContent = work.tech || "";
@@ -112,13 +171,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     linkElement.href = work.modalLink || "#";
     linkElement.target = work.modalLinkTarget || "";
     linkElement.dataset.action = work.modalLinkAction || "";
-
     modal.classList.remove("hidden");
   };
 
   const closeModal = () => {
     modal.classList.add("hidden");
+    currentWork = null;
   };
+
+  previousImageButton.addEventListener("click", () => changeGalleryImage(-1));
+  nextImageButton.addEventListener("click", () => changeGalleryImage(1));
+
+  window.matchMedia("(max-width: 640px)").addEventListener("change", () => {
+    if (currentWork && !modal.classList.contains("hidden")) {
+      currentImageIndex = 0;
+      updateGallery();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!currentWork || modal.classList.contains("hidden")) return;
+    if (event.key === "ArrowLeft") changeGalleryImage(-1);
+    if (event.key === "ArrowRight") changeGalleryImage(1);
+    if (event.key === "Escape") closeModal();
+  });
 
   document.addEventListener("click", (e) => {
     const trigger = e.target.closest(".js-work-modal-trigger");

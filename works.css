@@ -6,10 +6,7 @@
   --accent: #22D3EE;
 }
 
-html {
-  background-color: #0B1020;
-}
-
+html,
 body {
   font-family: "Zen Kaku Gothic New", sans-serif;
 }
@@ -38,37 +35,285 @@ h1 {
   }
 }
 
-@media (max-width: 640px) {
-  #works-list article {
-    padding-right: 1rem;
+/* Modal shared with index.html */
+.work-modal-panel {
+  width: min(1120px, calc(100% - 2rem));
+  max-height: 92svh;
+  overflow-y: auto;
+  border-radius: 1rem;
+}
+
+.work-modal-content {
+  padding: 1.25rem;
+}
+
+.work-modal-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.8rem;
+  z-index: 5;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 9999px;
+  color: #fff;
+  background: rgb(11 16 32 / 0.78);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.work-modal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.95fr);
+  grid-template-areas:
+    "gallery summary"
+    "process process";
+  gap: 0.9rem 1.25rem;
+  align-items: start;
+}
+
+.work-modal-gallery {
+  grid-area: gallery;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 0.75rem;
+  background: rgb(255 255 255 / 0.05);
+}
+
+.work-modal-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #080d19;
+}
+
+.work-gallery-button {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 9999px;
+  color: #fff;
+  background: rgb(11 16 32 / 0.72);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.work-gallery-button:hover {
+  color: var(--accent);
+  background: rgb(11 16 32 / 0.9);
+}
+
+.work-gallery-button[hidden],
+.work-gallery-counter[hidden] {
+  display: none;
+}
+
+.work-gallery-prev { left: 0.75rem; }
+.work-gallery-next { right: 0.75rem; }
+
+.work-gallery-counter {
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  margin: 0;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  color: #fff;
+  background: rgb(11 16 32 / 0.72);
+  font-size: 0.75rem;
+  transform: translateX(-50%);
+}
+
+.work-modal-info {
+  grid-area: summary;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.15rem 0.25rem 0.25rem 0;
+}
+
+.work-modal-eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.work-modal-title {
+  margin: 0.2rem 2.5rem 0 0;
+  color: #fff;
+  font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+  line-height: 1.15;
+}
+
+.work-modal-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.7rem;
+}
+
+.work-modal-meta-item {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 0.6rem;
+  background: rgb(255 255 255 / 0.05);
+}
+
+.work-modal-meta-item p,
+.work-modal-meta-item strong,
+.work-modal-section h3,
+.work-modal-section p {
+  margin: 0;
+}
+
+.work-modal-meta-item p {
+  color: #d9e2ff;
+  font-size: 0.72rem;
+}
+
+.work-modal-meta-item strong {
+  display: block;
+  margin-top: 0.1rem;
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.work-modal-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.65rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 0.6rem;
+  color: #fff;
+  background: rgb(255 255 255 / 0.08);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.work-modal-link:hover {
+  border-color: rgb(34 211 238 / 0.6);
+  color: #a5f3fc;
+  background: rgb(255 255 255 / 0.14);
+}
+
+.work-modal-overview,
+.work-modal-process-section {
+  min-width: 0;
+  padding: 0.65rem 0.8rem;
+  overflow: auto;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.65rem;
+  background: rgb(255 255 255 / 0.035);
+  scrollbar-width: thin;
+}
+
+.work-modal-overview {
+  max-height: min(19svh, 150px);
+  margin-top: 0.65rem;
+}
+
+.work-modal-process-section {
+  grid-area: process;
+  width: 100%;
+  max-height: min(25svh, 205px);
+}
+
+.work-modal-section h3 {
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.work-modal-section p {
+  margin-top: 0.35rem;
+  color: rgb(217 226 255 / 0.82);
+  font-size: clamp(0.76rem, 0.72vw, 0.84rem);
+  line-height: 1.55;
+}
+
+@media (min-width: 901px) {
+  .work-modal-panel {
+    width: min(1180px, calc(100vw - 3rem));
+    max-height: calc(100svh - 2rem);
+    overflow: hidden;
   }
 
-  .work-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
+  .work-modal-content {
+    padding: clamp(0.75rem, 1.4vh, 1.1rem);
   }
 
-  .work-card-header h2,
-  .work-card-header h3 {
-    min-width: 0;
-    margin: 0;
+  .work-modal-gallery {
+    max-height: min(46svh, 430px);
   }
+}
 
-  .work-card-actions {
-    position: static;
-    transform: none;
-    flex-shrink: 0;
-    margin-left: auto;
+@media (min-width: 901px) and (max-height: 760px) {
+  .work-modal-panel { max-height: calc(100svh - 1rem); }
+  .work-modal-content { padding: 0.65rem; }
+  .work-modal-gallery { max-height: 40svh; }
+  .work-modal-title { font-size: 1.25rem; }
+  .work-modal-meta { margin-top: 0.45rem; }
+  .work-modal-link { margin-top: 0.45rem; }
+  .work-modal-overview {
+    max-height: 15svh;
+    margin-top: 0.45rem;
+    padding: 0.5rem 0.65rem;
   }
+  .work-modal-process-section {
+    max-height: 21svh;
+    padding: 0.5rem 0.65rem;
+  }
+  .work-modal-section p {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+}
 
-  #work-modal > .relative {
-    max-width: calc(100% - 1.5rem);
-    max-height: 90svh;
+@media (max-width: 767px) {
+  .work-modal-panel {
+    width: min(100% - 1rem, 560px);
+    max-height: 94svh;
+    overflow-y: auto;
   }
-
-  #work-modal .work-modal-image {
-    height: 10rem;
+  .work-modal-content { padding: 0.75rem; }
+  .work-modal-layout { display: block; }
+  .work-modal-gallery { width: 100%; }
+  .work-modal-info { padding: 1rem 0.25rem 0.25rem; }
+  .work-modal-title { margin-right: 2rem; }
+  .work-modal-close { top: 0.95rem; right: 0.95rem; }
+  .work-modal-overview,
+  .work-modal-process-section {
+    max-height: none;
+    margin-top: 1rem;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
   }
+  .work-gallery-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+  }
+  .work-gallery-prev { left: 0.5rem; }
+  .work-gallery-next { right: 0.5rem; }
 }

@@ -112,40 +112,40 @@
 
   <div id="work-modal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center">
     <div class="absolute inset-0 bg-black/50 backdrop-blur-sm js-modal-close"></div>
-    <div class="relative z-10 w-[900px] max-w-[calc(100%-1.5rem)] max-h-[90svh] overflow-y-auto rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl shadow-black/60">
+    <div class="work-modal-panel relative z-10 border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl shadow-black/60">
       <div class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 via-white/10 to-transparent"></div>
-      <div class="relative z-10 p-4 sm:p-6 md:p-8">
-        <button class="absolute top-3 right-4 text-white/80 hover:text-white text-xl js-modal-close transition">×</button>
-        <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-          <figure class="border border-white/10 rounded-lg overflow-hidden bg-white/5">
-            <img class="work-modal-image w-full h-40 sm:h-60 md:h-full object-cover">
+      <div class="work-modal-content relative z-10">
+        <button type="button" class="work-modal-close js-modal-close" aria-label="モーダルを閉じる">×</button>
+        <div class="work-modal-layout">
+          <figure class="work-modal-gallery">
+            <img class="work-modal-image" alt="">
+            <button type="button" class="work-gallery-button work-gallery-prev" aria-label="前の画像を表示">&lt;</button>
+            <button type="button" class="work-gallery-button work-gallery-next" aria-label="次の画像を表示">&gt;</button>
+            <p class="work-gallery-counter" aria-live="polite"></p>
           </figure>
-          <div class="flex flex-col">
-            <p class="text-sm font-['Space_Grotesk'] tracking-[0.15em] text-cyan-300">WORK DETAIL</p>
-            <h2 class="work-modal-title text-white text-2xl font-bold mt-1">
-            </h2>
-            <div class="mt-4 space-y-3">
-              <div class="border border-white/10 rounded-lg p-3 bg-white/5">
-                <p class="text-xs text-[#D9E2FF]">作成期間</p>
-                <p class="work-modal-period text-white"></p>
+          <div class="work-modal-info">
+            <p class="work-modal-eyebrow">WORK DETAIL</p>
+            <h2 class="work-modal-title"></h2>
+            <div class="work-modal-meta">
+              <div class="work-modal-meta-item">
+                <p>作成期間</p>
+                <strong class="work-modal-period"></strong>
               </div>
-              <div class="border border-white/10 rounded-lg p-3 bg-white/5">
-                <p class="text-xs text-[#D9E2FF]">使用技術</p>
-                <p class="work-modal-tech text-white"></p>
+              <div class="work-modal-meta-item">
+                <p>使用技術</p>
+                <strong class="work-modal-tech"></strong>
               </div>
             </div>
-            <div class="mt-4">
-              <p class="text-sm text-[#D9E2FF]">作品概要</p>
-              <p class="work-modal-detail text-[#D9E2FF]/80 text-sm leading-relaxed mt-1 whitespace-pre-line"></p>
-            </div>
-            <div class="mt-4">
-              <p class="text-sm text-[#D9E2FF]">制作過程</p>
-              <p class="work-modal-process text-[#D9E2FF]/80 text-sm leading-relaxed mt-1 whitespace-pre-line"></p>
-            </div>
-            <a href="#" class="work-modal-link mt-auto flex items-center justify-center px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white text-sm hover:bg-white/20 hover:border-cyan-400/60 hover:text-cyan-200 transition" aria-label="作品へ移動">
-              作品へ移動
-            </a>
+            <a href="#" class="work-modal-link" aria-label="作品へ移動">作品へ移動</a>
+            <section class="work-modal-section work-modal-overview">
+              <h3>作品概要</h3>
+              <p class="work-modal-detail whitespace-pre-line"></p>
+            </section>
           </div>
+          <section class="work-modal-section work-modal-process-section">
+            <h3>制作過程</h3>
+            <p class="work-modal-process whitespace-pre-line"></p>
+          </section>
         </div>
       </div>
     </div>
