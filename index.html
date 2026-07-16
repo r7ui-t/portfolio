@@ -1,157 +1,100 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>プロフィールと作品</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="竹川瑠音のポートフォリオ。Webアプリやデスクトップツールなどの制作物と制作過程を掲載しています。">
+  <title>竹川 瑠音 — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body> 
-  <main class="site">
-    <section class="page min-h-screen bg-gradient-to-br from-[#0B1020] to-[#142A6E] flex items-center justify-center" id="profile-contact">
-      <div class="max-w-5xl mx-auto px-5 w-full">
-        <section class="p-6 md:p-8 rounded-2xl intro-card reveal bg-white/[0.08] backdrop-blur-md border border-white/15 shadow-2xl shadow-black/40">
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent"></div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:items-start">
-            <section class="profile-block">
-              <p class="eyebrow">PROFILE</p>
-              <h1 class="name">竹川 瑠音</h1>
-              <p class="role">フロントエンド学習中 / Webアプリ開発</p>
-              <p class="bio">
-                Pythonを中心に独学でプログラミングを学び、現在はAIを活用して様々な課題に挑戦しています。日常の不便をプログラムで解消できるよう努めています。
-              </p>
-            </section>
-
-            <section class="contact-block">
-              <p class="eyebrow">CONTACT</p>
-              <h2>問い合わせ</h2>
-              <p class="contact-info">お問い合わせは以下の連絡先までお願いします。<br>お気軽にお問い合わせください。</p>
-            </section>
-          </div>
-
-          <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div class="border border-white/15 rounded-xl px-3 py-2.5 flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-center bg-white/5">
-              <span>所属</span>
-              <strong>
-                <a class="contact-link inline-flex items-center gap-1" href="https://www.nagoya-bunri.ac.jp/" target="_blank" rel="noopener noreferrer">
-                  名古屋文理大学
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="contact-github-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.854 3.146a.5.5 0 1 0-.708.708L9.243 9.95H6.475a.5.5 0 1 0 0 1h3.975a.5.5 0 0 0 .5-.5V6.475a.5.5 0 1 0-1 0v2.768z"/>
-                  </svg>
-                </a>
-              </strong>
-            </div>
-            <div class="border border-white/15 rounded-xl px-3 py-2.5 flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-center bg-white/5">
-              <span>Email</span>
-              <div class="flex items-center gap-2">
-                <strong>3126055@nagoya-bunri.ac.jp</strong>
-                <button type="button" class="js-copy-email inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/20 text-white/90 transition hover:border-cyan-400/60 hover:text-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300" data-copy-text="3126055@nagoya-bunri.ac.jp" aria-label="Copy email address"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"></path></svg></button>
-              </div>
-            </div>
-            <div class="border border-white/15 rounded-xl px-3 py-2.5 flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-center bg-white/5">
-              <span>興味分野</span>
-              <strong>バックエンド / UI/UX開発</strong>
-            </div>
-            <div class="border border-white/15 rounded-xl px-3 py-2.5 flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-center bg-white/5">
-              <span>GitHub</span>
-              <strong>
-                <a class="contact-link inline-flex items-center gap-1" href="https://github.com/r7ui-t" target="_blank" rel="noopener noreferrer">
-                  github.com/r7ui-t
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="contact-github-icon" viewBox="0 0 16 16" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.854 3.146a.5.5 0 1 0-.708.708L9.243 9.95H6.475a.5.5 0 1 0 0 1h3.975a.5.5 0 0 0 .5-.5V6.475a.5.5 0 1 0-1 0v2.768z"/>
-                  </svg>
-                </a>
-              </strong>
-            </div>
-          </div>
-
-          <div class="mt-4 w-full border-t border-white/15 pt-3">
-            <p class="text-xs tracking-[0.08em] text-[#D9E2FF]">SKILLS</p>
-            <ul class="mt-2 flex flex-wrap justify-center gap-2" aria-label="スキル一覧">
-              <li class="flex h-12 w-14 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-1.5 transition hover:border-cyan-400/60 hover:-translate-y-0.5">
-                <img class="block w-8 h-auto" src="https://skillicons.dev/icons?i=html" alt="HTML">
-              </li>
-              <li class="flex h-12 w-14 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-1.5 transition hover:border-cyan-400/60 hover:-translate-y-0.5">
-                <img class="block w-8 h-auto" src="https://skillicons.dev/icons?i=css" alt="CSS">
-              </li>
-              <li class="flex h-12 w-14 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-1.5 transition hover:border-cyan-400/60 hover:-translate-y-0.5">
-                <img class="block w-8 h-auto" src="https://skillicons.dev/icons?i=python" alt="Python">
-              </li>
-              <li class="flex h-12 w-14 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-1.5 transition hover:border-cyan-400/60 hover:-translate-y-0.5">
-                <img class="block w-8 h-auto" src="https://skillicons.dev/icons?i=django" alt="Django">
-              </li>
-            </ul>
-          </div>
-
-        </section>
-      </div>
-      <a class="scroll-hint" href="#works" aria-label="作品セクションへ移動">
-        <span>スクロールして作品を見る</span>
-        <span class="scroll-arrow" aria-hidden="true">↓</span>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-label" href="#top" aria-label="ページ上部へ戻る">
+        <span>PORTFOLIO</span>
+        <span>2026</span>
       </a>
+      <nav class="site-nav" aria-label="メインナビゲーション">
+        <a href="#profile">Profile</a>
+        <a href="#works">Works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="profile section-shell" id="profile" aria-labelledby="profile-title">
+      <div class="profile-heading">
+        <p class="section-label">Profile</p>
+        <h1 id="profile-title">竹川 瑠音</h1>
+        <p class="profile-role">フロントエンド学習中<br>Webアプリ開発</p>
+      </div>
+
+      <div class="profile-content">
+        <p class="profile-bio">
+          Pythonを中心に独学でプログラミングを学び、現在はAIを活用しながら様々な課題に挑戦しています。日常の不便をプログラムで解消できるよう、Webアプリやデスクトップツールを制作しています。
+        </p>
+
+        <dl class="profile-facts">
+          <div>
+            <dt>所属</dt>
+            <dd><a href="https://www.nagoya-bunri.ac.jp/" target="_blank" rel="noopener noreferrer">名古屋文理大学<span aria-hidden="true">↗</span></a></dd>
+          </div>
+          <div>
+            <dt>興味分野</dt>
+            <dd>バックエンド / UI・UX開発</dd>
+          </div>
+          <div>
+            <dt>使用技術</dt>
+            <dd>HTML / CSS / JavaScript / Python / Django / C# / .NET</dd>
+          </div>
+        </dl>
+      </div>
     </section>
 
-    <section class="page bg-gradient-to-b from-[#142A6E] to-[#0B1020]" id="works">
-      <div class="works-wrap reveal p-8 rounded-xl bg-white/5 backdrop-blur-lg border border-white/10D">
-        <p class="eyebrow">WORKS</p>
-        <h2>作品</h2>
+    <section class="works section-shell" id="works" aria-labelledby="works-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Works</p>
+          <h2 id="works-title">制作物</h2>
+        </div>
+        <p class="section-count"><span id="work-count">4</span> projects / 2026</p>
+      </div>
 
-        <div class="grid gap-4" id="works-grid"></div>
-
-        <p class="works-more">
-          <a href="works.html">作品一覧ページを見る</a>
-        </p>
+      <div id="works-list" class="works-list" aria-live="polite">
+        <p class="loading-message">作品を読み込んでいます。</p>
       </div>
     </section>
   </main>
 
+  <footer class="contact" id="contact">
+    <div class="section-shell contact-inner">
+      <div>
+        <p class="section-label section-label-light">Contact</p>
+        <h2>連絡先</h2>
+      </div>
 
-  <div id="work-modal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center">
-    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm js-modal-close"></div>
-    <div class="work-modal-panel relative z-10 border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl shadow-black/60">
-      <div class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 via-white/10 to-transparent"></div>
-      <div class="work-modal-content relative z-10">
-        <button type="button" class="work-modal-close js-modal-close" aria-label="モーダルを閉じる">×</button>
-        <div class="work-modal-layout">
-          <figure class="work-modal-gallery">
-            <img class="work-modal-image" alt="">
-            <button type="button" class="work-gallery-button work-gallery-prev" aria-label="前の画像を表示">&lt;</button>
-            <button type="button" class="work-gallery-button work-gallery-next" aria-label="次の画像を表示">&gt;</button>
-            <p class="work-gallery-counter" aria-live="polite"></p>
-          </figure>
-          <div class="work-modal-info">
-            <p class="work-modal-eyebrow">WORK DETAIL</p>
-            <h2 class="work-modal-title"></h2>
-            <div class="work-modal-meta">
-              <div class="work-modal-meta-item">
-                <p>作成期間</p>
-                <strong class="work-modal-period"></strong>
-              </div>
-              <div class="work-modal-meta-item">
-                <p>使用技術</p>
-                <strong class="work-modal-tech"></strong>
-              </div>
-            </div>
-            <a href="#" class="work-modal-link" aria-label="作品へ移動">作品へ移動</a>
-            <section class="work-modal-section work-modal-overview">
-              <h3>作品概要</h3>
-              <p class="work-modal-detail whitespace-pre-line"></p>
-            </section>
+      <div class="contact-links">
+        <div class="contact-row">
+          <span>Email</span>
+          <div class="contact-value">
+            <a href="mailto:3126055@nagoya-bunri.ac.jp">3126055@nagoya-bunri.ac.jp</a>
+            <button type="button" class="copy-button js-copy-email" data-copy-text="3126055@nagoya-bunri.ac.jp">コピー</button>
           </div>
-          <section class="work-modal-section work-modal-process-section">
-            <h3>制作過程</h3>
-            <p class="work-modal-process whitespace-pre-line"></p>
-          </section>
+        </div>
+        <div class="contact-row">
+          <span>GitHub</span>
+          <a href="https://github.com/r7ui-t" target="_blank" rel="noopener noreferrer">github.com/r7ui-t<span aria-hidden="true">↗</span></a>
         </div>
       </div>
+
+      <p class="footer-note">© 2026 Rui Takekawa</p>
     </div>
-  </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
