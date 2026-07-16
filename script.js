@@ -18,7 +18,7 @@ const isSelfLink = (href = "") => href.startsWith("index.html") || href.startsWi
 const getSecondaryLink = (work) => {
   if (!work.modalLink || isSelfLink(work.modalLink) || work.modalLink === work.github) return "";
 
-  const label = work.id === "ClaudeStatusBar" ? "Release" : "Open";
+  const label = work.id === "QuotaBar" ? "Release" : "Open";
   return `
     <a class="project-link" href="${escapeHtml(work.modalLink)}" target="_blank" rel="noopener noreferrer">
       <span>${label}</span><span aria-hidden="true">↗</span>
