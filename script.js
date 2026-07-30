@@ -13,16 +13,53 @@ const getWorkImages = (work) => {
   return [];
 };
 
-const isSelfLink = (href = "") => href.startsWith("index.html") || href.startsWith("#");
+const renderProjectLinks = (links) => {
+  if (!Array.isArray(links)) return "";
 
-const getSecondaryLink = (work) => {
-  if (!work.modalLink || isSelfLink(work.modalLink) || work.modalLink === work.github) return "";
+  const linkMarkup = links
+    .filter((link) =>
+      link
+      && typeof link.label === "string"
+      && link.label.trim() !== ""
+      && typeof link.href === "string"
+      && link.href.trim() !== "")
+    .map((link) => {
+      const opensNewTab = link.target === "_blank";
+      const targetAttributes = opensNewTab
+        ? ' target="_blank" rel="noopener noreferrer"'
+        : "";
 
-  const label = work.id === "QuotaBar" ? "Release" : "Open";
+      return `
+        <a class="project-link" href="${escapeHtml(link.href)}"${targetAttributes}>
+          <span>${escapeHtml(link.label)}</span><span aria-hidden="true">↗</span>
+        </a>`;
+    })
+    .join("");
+
+  return linkMarkup
+    ? `<div class="project-actions">${linkMarkup}</div>`
+    : "";
+};
+
+const renderCaseStudy = (caseStudy) => {
+  if (!caseStudy || typeof caseStudy !== "object") return "";
+
+  const entries = [
+    ["課題", caseStudy.challenge],
+    ["判断", caseStudy.decision],
+    ["結果", caseStudy.result],
+  ].filter(([, value]) => typeof value === "string" && value.trim() !== "");
+
+  if (entries.length === 0) return "";
+
   return `
-    <a class="project-link" href="${escapeHtml(work.modalLink)}" target="_blank" rel="noopener noreferrer">
-      <span>${label}</span><span aria-hidden="true">↗</span>
-    </a>`;
+    <dl class="project-case-study" aria-label="ケーススタディ">
+      ${entries.map(([label, value]) => `
+        <div>
+          <dt>${label}</dt>
+          <dd>${escapeHtml(value)}</dd>
+        </div>`).join("")}
+    </dl>`;
 };
 
 const renderProject = (work) => {
@@ -38,9 +75,7 @@ const renderProject = (work) => {
         >`).join("")
     : `<p class="error-message">画像は登録されていません。</p>`;
 
-  const githubLink = work.github
-    ? `<a class="project-link" href="${escapeHtml(work.github)}" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span aria-hidden="true">↗</span></a>`
-    : "";
+  const linksMarkup = renderProjectLinks(work.links);
 
   return `
     <article class="project project--${escapeHtml(work.id.toLowerCase())}${hasMultipleImages ? " project--multiple-images" : ""}">
@@ -80,15 +115,14 @@ const renderProject = (work) => {
           </div>
         </dl>
 
+        ${renderCaseStudy(work.caseStudy)}
+
         <details class="project-details">
           <summary>制作過程を読む</summary>
           <p class="project-process">${escapeHtml(work.process)}</p>
         </details>
 
-        <div class="project-actions">
-          ${githubLink}
-          ${getSecondaryLink(work)}
-        </div>
+        ${linksMarkup}
       </div>
     </article>`;
 };

@@ -1,66 +1,84 @@
 [
   {
+    "id": "QuotaBar",
+    "title": "QuotaBar",
+    "summary": "ClaudeとCodexの利用上限を、Windowsのタスクトレイから確認できる常駐アプリです。",
+    "period": "2026年7月",
+    "tech": "C#, .NET",
+    "detail": "5時間枠と週次枠の使用率、リセットまでの時間を表示します。片方の取得に失敗しても、もう片方の表示を維持します。",
+    "caseStudy": {
+      "challenge": "CodexなどのAIのトークン利用料を確認しに行くのが手間で、利用上限とリセット時刻を一か所で確認できる常駐表示が必要でした。",
+      "decision": "Windows専用で常駐させるため、.NET 8とWinFormsのNotifyIconを採用しました。片方の取得失敗がもう片方へ影響しないよう、プロバイダごとに取得結果を分離しました。",
+      "result": "5時間枠と週次枠、リセットまでの時間をタスクトレイから確認できます。"
+    },
+    "process": "ClaudeはOAuthのusage API、Codexは公式app-serverから利用状況を取得します。仕様決定、表示設計、実機での動作確認、修正方針を担当し、C#の実装ではAIの支援を利用しました。",
+    "image": "images/works/QuotaBar/cover.png",
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/r7ui-t/Quotabar",
+        "target": "_blank"
+      },
+      {
+        "label": "Download",
+        "href": "https://github.com/r7ui-t/Quotabar/releases",
+        "target": "_blank"
+      }
+    ]
+  },
+  {
     "id": "portfolio-site",
     "title": "ポートフォリオサイト",
-    "summary": "HTML/CSSで制作したポートフォリオサイト。",
+    "summary": "HTML/CSSで制作したポートフォリオサイトです。",
     "period": "2026年6月-2026年7月",
-    "tech": "HTML, CSS, JavaScript",
-    "detail": "情報リテラシーの課題で作成。HTML/CSS/JavaScriptを用いた自身のポートフォリオサイトです。",
-    "process": "はじめに、メディアデザイン入門で学んだプロトタイピングを用いて、大まかなレイアウトを決めた。その後、HTMLとCSSで実装を進めた。レイアウトは自分で試行錯誤を重ねながら検討し、CSSはプログラミングを初めて学んだときに少し触れた程度だったため、AIの支援を受けながら実装した。当初は、気に入ったカラーパレットから色を選び、カードを中心としたデザインにしていた。ただし、自分のウェブサイトは毎回カードに頼りがちだったため、別の表現を模索し、現在のデザインへ変更することにした。また、情報リテラシーの授業で「過程にも価値がある」と学んだことをきっかけに、初めて本格的にGitによるバージョン管理を行った。その結果、制作過程を記録できただけでなく、Gitに対する理解も深まった。",
+    "tech": "HTML/CSS, JavaScript",
+    "detail": "情報リテラシーの課題で作成しました。HTML/CSS/JavaScriptを用いた自身のポートフォリオサイトです。",
+    "process": "はじめに、メディアデザイン入門で学んだプロトタイピングを用いて、大まかなレイアウトを決めました。その後、HTML/CSSで実装を進めました。レイアウトは自分で試行錯誤を重ねながら検討しました。CSSはプログラミングを初めて学んだときに少し触れた程度だったため、AIの支援を受けながら実装しました。当初は、気に入ったカラーパレットから色を選び、カードを中心としたデザインにしていました。ただし、自分のウェブサイトは毎回カードに頼りがちだったため、別の表現を模索し、現在のデザインへ変更することにしました。また、情報リテラシーの授業で「過程にも価値がある」と学んだことをきっかけに、初めて本格的にGitによるバージョン管理を行いました。その結果、制作過程を記録できただけでなく、Gitに対する理解も深まりました。",
     "images": [
       "images/works/portfolio/01.png",
       "images/works/portfolio/02.png",
       "images/works/portfolio/03.png"
     ],
-    "modalLink": "index.html#profile-contact",
-    "modalLinkTarget": "",
-    "github": "https://github.com/r7ui-t/portfolio",
-    "indexView": { "href": "index.html#profile-contact", "target": "", "ariaLabel": "作品リンクを開く" },
-    "listView": { "href": "index.html#profile-contact", "target": "", "ariaLabel": "ポートフォリオサイトを開く" }
-  },
-  {
-    "id": "slay-the-spire-scratch",
-    "title": "Slay The Spire - Scratch version",
-    "summary": "Scratch3.0を用いて作成したSlay The Spireの再現版。Silentでのボスグレムリン戦を再現しています。",
-    "period": "2026年5月-2026年6月",
-    "tech": "Scratch 3.0",
-    "detail": "プログラミング入門の期末課題で作成したSlayTheSpireのScratch版です。サイレントというキャラクターを使用し、ボスグレムリンというエリートボスを倒すシーンを再現してあります。",
-    "process": "一見するとシンプルなカードゲームですが、実装面ではカードが引かれた位置を記録し、空いた枠へ左側から順にカードを補充する処理に苦労しました。また、敵キャラクターには自身の行動によって攻撃力が変化する特殊能力を持たせており、状態に応じて適切に数値を更新する処理を実装しました。さらに、弱体化をはじめとする複数のバフ・デバフ効果を追加し、それぞれの効果が競合せず正しく反映されるよう、処理の順序や条件分岐を工夫しました。見た目のシンプルさとは対照的に、カード管理や敵の能力、状態変化の制御など、さまざまな要素を組み合わせて実装した作品です。",
-    "image": "images/works/slay-the-spire/cover.jpg",
-    "modalLink": "https://scratch.mit.edu/projects/1333302307/",
-    "modalLinkTarget": "_blank",
-    "github": null,
-    "indexView": { "href": "https://scratch.mit.edu/projects/1333302307/", "target": "_blank", "ariaLabel": "作品リンクを開く" },
-    "listView": { "href": "https://scratch.mit.edu/projects/1333302307/", "target": "_blank", "ariaLabel": "Scratch作品を開く" }
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/r7ui-t/portfolio",
+        "target": "_blank"
+      }
+    ]
   },
   {
     "id": "pictdict",
     "title": "PictDict",
-    "summary": "日常のピクトグラムを記録する図鑑",
+    "summary": "日常のピクトグラムを記録する図鑑です。",
     "period": "2026年5月",
-    "tech": "Django, Python, HTML, CSS",
-    "detail": "こちらも情報リテラシーの課題で作成したもの。ピクトグラムの写真と場所、メモを記録することができる。PictDictという名前はピクトグラム+ディクショナリー(辞書)の造語です。",
-    "process": "Djangoで作ったウェブサイト、公開環境がないため未公開です。バックエンドにはDjangoを使用している。CRUDアプリケーションを作るのはプログラミングにハマっていた高校時代ぶりなので、ところどころ忘れてしまっていたが覚えているところもあったので嬉しかった。ピクトディクトという名前がとてもお気に入りです。",
+    "tech": "Django, Python, HTML/CSS",
+    "detail": "こちらも情報リテラシーの課題で作成しました。ピクトグラムの写真と場所、メモを記録できます。PictDictという名前は、「ピクトグラム」と「ディクショナリー（辞書）」を組み合わせた造語です。",
+    "process": "Djangoで制作したウェブサイトです。公開環境がないため、現在は未公開です。バックエンドにはDjangoを使用しています。CRUDアプリケーションを作るのは、プログラミングに熱中していた高校時代以来でした。忘れていた部分もありましたが、覚えている部分もあり、嬉しく感じました。「ピクトディクト」という名前も気に入っています。",
     "image": "images/works/pictdict/cover.jpg",
-    "modalLink": "https://github.com/r7ui-t/PictDict",
-    "modalLinkTarget": "_blank",
-    "github": "https://github.com/r7ui-t/PictDict",
-    "indexView": { "href": "https://github.com/r7ui-t/PictDict", "target": "_blank", "ariaLabel": "作品リンクを開く" },
-    "listView": { "href": "https://github.com/r7ui-t/PictDict", "target": "_blank", "ariaLabel": "GitHubリポジトリを開く" }
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/r7ui-t/PictDict",
+        "target": "_blank"
+      }
+    ]
   },
   {
-    "id": "QuotaBar",
-    "title": "QuotaBar",
-    "summary": "ClaudeやCodeXのトークンをタスクトレイで表示するステータスバー",
-    "period": "2026年7月",
-    "tech": "C#, .NET",
-    "detail": "Claude, CodeXのトークンをタスクバーやタスクトレイで表示できるソフトです。アイコンは二種類用意してあり、右クリックを押すことでより詳細な情報が表示可能",
-    "process": "知人からClaudeのトライアルを1週間分もらったことをきっかけに、その期間中に制作した。それまでGitHub Copilot以外のAIを使ったことがなく、本格的なAIサービスの実力に感動した。ClaudeとCodexのどちらを契約するか迷ったが、GPT-5.6 Solの評価を受けてCodexの契約を決断した。C#は未経験だったため、コーディングではAIの支援を受けたが、仕様の決定や動作確認、修正の指示は自分で行った。結果として、思い描いたとおりのソフトを完成させられたことに満足している。",
-    "image": "images/works/QuotaBar/cover.png",
-    "modalLink": "https://github.com/r7ui-t/Quotabar/releases",
-    "modalLinkTarget": "_blank",
-    "github": "https://github.com/r7ui-t/Quotabar",
-    "indexView": { "href": "https://github.com/r7ui-t/Quotabar/releases", "target": "_blank", "ariaLabel": "作品リンクを開く" },
-    "listView": { "href": "https://github.com/r7ui-t/Quotabar/releases", "target": "_blank", "ariaLabel": "GitHubリポジトリを開く" }
+    "id": "slay-the-spire-scratch",
+    "title": "Slay The Spire - Scratch version",
+    "summary": "Scratch3.0を用いて作成したSlay The Spireの再現版です。Silentでのボスグレムリン戦を再現しています。",
+    "period": "2026年5月-2026年6月",
+    "tech": "Scratch 3.0",
+    "detail": "プログラミング入門の期末課題で作成したSlayTheSpireのScratch版です。サイレントというキャラクターを使用し、ボスグレムリンというエリートボスを倒すシーンを再現しています。",
+    "process": "一見するとシンプルなカードゲームですが、実装面ではカードが引かれた位置を記録し、空いた枠へ左側から順にカードを補充する処理に苦労しました。また、敵キャラクターには自身の行動によって攻撃力が変化する特殊能力を持たせており、状態に応じて適切に数値を更新する処理を実装しました。さらに、弱体化をはじめとする複数のバフ・デバフ効果を追加し、それぞれの効果が競合せず正しく反映されるよう、処理の順序や条件分岐を工夫しました。見た目のシンプルさとは対照的に、カード管理や敵の能力、状態変化の制御など、さまざまな要素を組み合わせて実装した作品です。",
+    "image": "images/works/slay-the-spire/cover.jpg",
+    "links": [
+      {
+        "label": "Play on Scratch",
+        "href": "https://scratch.mit.edu/projects/1333302307/",
+        "target": "_blank"
+      }
+    ]
   }
 ]

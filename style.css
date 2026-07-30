@@ -1,12 +1,27 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 */
+
 :root {
   --canvas: #f2f3f5;
-  --paper: #ffffff;
+  --paper: #f8f9fb;
   --ink: #111318;
   --muted: #626873;
   --rule: #cdd1d8;
+  --rule-strong: #abb1bc;
+  --disabled: #999faa;
   --blue: #2457f5;
   --blue-dark: #173ab0;
-  --footer: #111318;
+  --footer: #14161c;
+  --footer-ink: #f8f9fb;
+  --footer-muted: #aab0bb;
+  --footer-rule: #727783;
+  --footer-rule-muted: #414650;
+  --footer-accent: #a8bdff;
+  --stage-muted: #e7ebf1;
+  --font-display: "Zen Kaku Gothic New", sans-serif;
+  --font-body: "Noto Sans JP", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-short: 160ms;
   --content-width: 1280px;
   --page-padding: clamp(1.25rem, 4vw, 4.5rem);
 }
@@ -18,15 +33,17 @@
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--canvas);
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: var(--font-body);
   line-height: 1.7;
   text-rendering: optimizeLegibility;
 }
@@ -84,7 +101,7 @@ a {
   display: inline-flex;
   gap: 0.75rem;
   color: var(--ink);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.76rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -99,7 +116,7 @@ a {
   display: flex;
   align-items: center;
   gap: clamp(1rem, 3vw, 2.5rem);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
 }
 
@@ -117,7 +134,7 @@ a {
 .project-tech,
 .contact-row > span,
 .footer-note {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
 }
 
 .section-label {
@@ -140,6 +157,7 @@ a {
 
 .profile-heading h1 {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(3.5rem, 6.2vw, 6.75rem);
   font-weight: 700;
   letter-spacing: -0.075em;
@@ -182,7 +200,7 @@ a {
 
 .profile-facts dt {
   color: var(--muted);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
 }
 
@@ -219,6 +237,7 @@ a {
 .section-heading h2,
 .contact h2 {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 5.5rem);
   font-weight: 600;
   letter-spacing: -0.055em;
@@ -270,6 +289,7 @@ a {
 
 .project-title {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(1.9rem, 3.7vw, 4.2rem);
   font-weight: 600;
   letter-spacing: -0.045em;
@@ -279,7 +299,7 @@ a {
 .project-period {
   margin: 0 0 0.25rem;
   color: var(--muted);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   text-align: right;
 }
@@ -317,7 +337,7 @@ a {
   width: auto;
   max-height: min(67vw, 760px);
   object-fit: contain;
-  border: 1px solid #aeb3bd;
+  border: 1px solid var(--rule-strong);
   background: var(--paper);
 }
 
@@ -360,20 +380,20 @@ a {
   border: 1px solid var(--ink);
   color: var(--ink);
   background: var(--paper);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 1rem;
   cursor: pointer;
 }
 
 .gallery-button:hover:not(:disabled) {
   border-color: var(--blue);
-  color: white;
+  color: var(--footer-ink);
   background: var(--blue);
 }
 
 .gallery-button:disabled {
   border-color: var(--rule);
-  color: #9ba0aa;
+  color: var(--disabled);
   cursor: default;
 }
 
@@ -381,13 +401,13 @@ a {
   min-width: 3.75rem;
   margin: 0;
   color: var(--muted);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   text-align: center;
 }
 
 .project--claudestatusbar .project-stage {
-  background-color: #e8edf4;
+  background-color: var(--stage-muted);
   background-image: none;
 }
 
@@ -431,6 +451,31 @@ a {
   font-size: 0.9rem;
 }
 
+.project-case-study {
+  margin: 2rem 0 0;
+  border-top: 1px solid var(--ink);
+}
+
+.project-case-study > div {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.project-case-study dt {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.project-case-study dd {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
 .project-details {
   border-bottom: 1px solid var(--rule);
 }
@@ -454,7 +499,7 @@ a {
 .project-details summary::after {
   content: "+";
   color: var(--blue);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 1.25rem;
   font-weight: 400;
 }
@@ -489,15 +534,16 @@ a {
   border: 1px solid var(--ink);
   color: var(--ink);
   background: transparent;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 0.74rem;
   text-decoration: none;
-  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+  white-space: nowrap;
+  transition: color var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
 }
 
 .project-link:hover {
   border-color: var(--blue);
-  color: white;
+  color: var(--footer-ink);
   background: var(--blue);
 }
 
@@ -513,12 +559,8 @@ a {
   padding-block: clamp(5rem, 10vw, 9rem) 3rem;
 }
 
-.section-label-light {
-  color: #9fb6ff;
-}
-
 .contact-links {
-  border-top: 1px solid #747985;
+  border-top: 1px solid var(--footer-rule);
 }
 
 .contact-row {
@@ -527,17 +569,17 @@ a {
   gap: 1.5rem;
   align-items: center;
   padding: 1.4rem 0;
-  border-bottom: 1px solid #444852;
+  border-bottom: 1px solid var(--footer-rule-muted);
 }
 
 .contact-row > span {
-  color: #aeb3bd;
+  color: var(--footer-muted);
   font-size: 0.73rem;
 }
 
 .contact-row a {
   width: fit-content;
-  color: white;
+  color: var(--footer-ink);
 }
 
 .contact-value {
@@ -551,28 +593,28 @@ a {
 .copy-button {
   flex: 0 0 auto;
   padding: 0.5rem 0.7rem;
-  border: 1px solid #747985;
-  color: white;
+  border: 1px solid var(--footer-rule);
+  color: var(--footer-ink);
   background: transparent;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: var(--font-body);
   font-size: 0.75rem;
   cursor: pointer;
 }
 
 .copy-button:hover {
-  border-color: #9fb6ff;
-  color: #9fb6ff;
+  border-color: var(--footer-accent);
+  color: var(--footer-accent);
 }
 
 .copy-button.is-copied {
-  border-color: #9fb6ff;
-  color: #9fb6ff;
+  border-color: var(--footer-accent);
+  color: var(--footer-accent);
 }
 
 .footer-note {
   grid-column: 1 / -1;
   margin: 5rem 0 0;
-  color: #747985;
+  color: var(--footer-rule);
   font-size: 0.68rem;
 }
 
@@ -698,6 +740,11 @@ a {
     max-height: 640px;
   }
 
+  .project-case-study > div {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
   .project--claudestatusbar .project-gallery img {
     max-height: 440px;
   }
@@ -709,6 +756,10 @@ a {
 
   .project-link {
     min-width: 0;
+  }
+
+  .project-actions .project-link:only-child {
+    grid-column: 1 / -1;
   }
 
   .contact-inner {
